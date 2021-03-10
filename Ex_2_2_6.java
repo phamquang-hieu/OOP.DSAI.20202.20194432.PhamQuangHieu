@@ -2,8 +2,8 @@ import java.util.Scanner;
 class Ex_2_2_6{
 	static void firstOrder(double a, double b)
 	{
-		if(a!= 0) System.out.println((-b)/a);
-		else if (a == 0 && b != 0) System.out.println("a = 0 -> no solution");
+		if(a!= 0) System.out.println((0-b)/a);
+		else if (a == 0 && b != 0) System.out.println("a = 0 && b!= 0 -> no solution");
 		else System.out.println("infinitely many solution");
 	}
 	static void firstOrderSystem(double a, double b, double c, 
@@ -64,20 +64,34 @@ class Ex_2_2_6{
 				break;
 			case 2:
 				double a, b, c, d, e, f;
+				System.out.println("Solving system of equation:");
+				System.out.println("ax + by = c");
+				System.out.println("dx + ey = f");
+				System.out.println("a= ");
 				a = s.nextDouble();
+				System.out.print("b= ");
 				b = s.nextDouble();
+				System.out.print("c= ");
 				c = s.nextDouble();
+				System.out.print("d= ");
 				d = s.nextDouble();
+				System.out.print("e= ");
 				e = s.nextDouble();
+				System.out.print("f= ");
 				f = s.nextDouble();
 				firstOrderSystem(a, b, c, d, e, f);
 				break;
 			case 3: 
 				double a2, b2, c2;
+				System.out.println("Solving second order equation: ax^2 +  bx + c = 0");
+				System.out.print("a= ");
 				a2 = s.nextDouble();
+				System.out.print("b= ");
 				b2 = s.nextDouble();
+				System.out.print("c= ");
 				c2 = s.nextDouble();
-				secondOrder(a2, b2, c2);
+				if(a2 != 0) secondOrder(a2, b2, c2);
+				else firstOrder(b2, c2);
 				break;
 		}
 	}
