@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Ex_6_2{
+public class InputFromKeyboard{
 
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);

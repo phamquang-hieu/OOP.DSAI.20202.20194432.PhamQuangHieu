@@ -15,11 +15,11 @@ public class AddMatrix
 		System.out.println("Enter element of mat1 from left ->right, up->down");
 		for(i = 0; i < m*n; ++i)
 			mat1[i] = s.nextDouble();
-		System.out.println("Enter element of mat1 from left ->right, up->down");
+		System.out.println("Enter element of mat2 from left ->right, up->down");
 		for(i = 0; i< m*n; ++i)
 			mat2[i] = s.nextDouble();
 		double mat3[] = new double[n*m];
-		System.out.println("The addition of the 2 matrix is: ");
+		System.out.println("The sum of the 2 matrix is: ");
 		for(i = 0; i< m*n; ++i)
 			mat3[i] = mat1[i] + mat2[i];
 		for(i = 1; i<=(m*n); ++i)
