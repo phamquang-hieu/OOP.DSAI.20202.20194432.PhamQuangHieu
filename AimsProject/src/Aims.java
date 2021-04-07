@@ -17,6 +17,5 @@ public class Aims {
 		anotherOrder.addDigitalVideoDisc(dvd1, dvd2, dvd3);
 		System.out.println("Total Cost is: "+ anotherOrder.totalCost() + "\n");
 		
-		
 	}
 }

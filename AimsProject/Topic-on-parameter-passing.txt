@@ -1,0 +1,14 @@
+● After the call of swap(jungleDVD, cinderellaDVD) why does the title of these two
+objects still remain?
+- Because the method swap will create two different object in Heap memory and then coppy
+the value of the two objects jungleDVD and cinderellaDVD into those object. Indeed, the
+two newly created objects are swapped, not our original object.
+
+● After the call of changeTitle(jungleDVD, cinderellaDVD.getTitle()) why is
+the title of the JungleDVD changed?
+
+- Because the value contained in the jungleDVD variable is the address of the memory block
+containing data about the jungleDVD object, when calling the function jungleDVD, the address
+of the jungleDVD object is coppied to the variable dvd. That variable is also a reference 
+to the jungleDVD object. Thus it can change the content of the memory block of the jungleDVD
+via setter method.
