@@ -6,14 +6,50 @@ public class Cart {
 	public int getQtyOrdered() {
 		return qtyOrdered;
 	}
+	private boolean fullyLoaded(){
+		if (qtyOrdered != MAX_NUMBERS_ORDERED) return false;
+		System.out.println("Your cart is almost full!");
+		return true;
+	}
 
 	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
-		if (qtyOrdered == MAX_NUMBERS_ORDERED) {
-			System.out.println("Your cart is almost full!");
-			return;
-		}
+		if(fullyLoaded()) return;
 		itemsOrdered[qtyOrdered++] = disc;
 		System.out.println("The disc "+ disc.getTitle()+ " has been added");
+	}
+	
+	public void addDigitalVideoDisc(DigitalVideoDisc...dvdList)
+	{
+		if (fullyLoaded()) return;
+		int remainQty = dvdList.length;
+		int i = 0;
+		while(qtyOrdered < MAX_NUMBERS_ORDERED && remainQty != 0)
+		{
+			itemsOrdered[qtyOrdered++] = dvdList[i++];
+			System.out.println("The disc "+ dvdList[i-1].getTitle()+ " has been added");
+			remainQty--;
+		}
+		
+		if(remainQty > 0)
+		{
+			System.out.println("Maximum capacity is " + MAX_NUMBERS_ORDERED + " discs");
+			System.out.println("The following dvd hasn't been added due to a lack of space:");
+			for(;i < dvdList.length; ++i)
+			{
+				System.out.println("\t+ "+ dvdList[i].getTitle());
+			}
+		}
+	}
+	
+	public void addDigitalVideoDisc(DigitalVideoDisc dvd1,DigitalVideoDisc dvd2)
+	{
+		if(fullyLoaded()) return;
+		if(MAX_NUMBERS_ORDERED - qtyOrdered == 1) this.addDigitalVideoDisc(dvd1);
+		else
+		{
+			this.addDigitalVideoDisc(dvd1);
+			this.addDigitalVideoDisc(dvd2);
+		}
 	}
 	
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
