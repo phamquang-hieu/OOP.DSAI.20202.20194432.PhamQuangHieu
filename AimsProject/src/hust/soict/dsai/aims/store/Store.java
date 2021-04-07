@@ -1,3 +1,5 @@
+package hust.soict.dsai.aims.store;
+import hust.soict.dsai.aims.disc.DigitalVideoDisc;
 
 public class Store {
 	private final int STORE_CAPACITY = 10000;
