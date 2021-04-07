@@ -15,7 +15,7 @@ public class Cart {
 	public void addDigitalVideoDisc(DigitalVideoDisc disc) {
 		if(fullyLoaded()) return;
 		itemsOrdered[qtyOrdered++] = disc;
-		System.out.println("The disc "+ disc.getTitle()+ " has been added");
+		System.out.println("The disc "+ disc.getTitle()+ " has been added" + " Id = " + disc.getId());
 	}
 	
 	public void addDigitalVideoDisc(DigitalVideoDisc...dvdList)
@@ -26,7 +26,7 @@ public class Cart {
 		while(qtyOrdered < MAX_NUMBERS_ORDERED && remainQty != 0)
 		{
 			itemsOrdered[qtyOrdered++] = dvdList[i++];
-			System.out.println("The disc "+ dvdList[i-1].getTitle()+ " has been added");
+			System.out.println("The disc "+ dvdList[i-1].getTitle()+ " has been added." + " Id= " + dvdList[i-1].getId());
 			remainQty--;
 		}
 		
