@@ -1,6 +1,7 @@
+package hust.soict.dsai.aims.disc;
 
 public class WrapperDigitalVideoDisc {
-	DigitalVideoDisc dvd;
+	public DigitalVideoDisc dvd;
 	public WrapperDigitalVideoDisc(DigitalVideoDisc d)
 	{
 		this.dvd = d;
