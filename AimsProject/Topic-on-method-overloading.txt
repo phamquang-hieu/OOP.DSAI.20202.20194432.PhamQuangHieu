@@ -1,0 +1,4 @@
++ Try to add a method addDigitalVideoDisc which allows to pass an arbitrary number of
+arguments for dvd. Compare to an array parameter. What do you prefer in this case?
+
+In this case I prefer to use Variable Arguments because it is flexible, I can either pass an array or pass an arbitrary number of parameters.
