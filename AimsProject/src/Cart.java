@@ -52,6 +52,30 @@ public class Cart {
 		}
 	}
 	
+	public boolean searchByTitle(String title) {
+		for (int i = 0; i < qtyOrdered; ++i)
+			if(itemsOrdered[i].getTitle() == title)
+			{
+				String[] data = itemsOrdered[i].getDetails();
+				System.out.print("DVD - "+ data[0] +" - " + data[1] + " - " + data[2] + " - " + 
+						data[3] + ": " + data[4] + "$\n");
+				return true;
+			}
+		System.out.println("No match DVD found!");
+		return false;
+	}
+	public boolean searchById(int id) {
+		for (int i = 0; i < qtyOrdered; ++i)
+			if(itemsOrdered[i].getId() == id)
+			{
+				String[] data = itemsOrdered[i].getDetails();
+				System.out.print("DVD - "+ data[0] +" - " + data[1] + " - " + data[2] + " - " + 
+						data[3] + ": " + data[4] + "$\n");
+				return true;
+			}
+		System.out.println("No match DVD found!");
+		return false;
+	}
 	public void removeDigitalVideoDisc(DigitalVideoDisc disc) {
 		if (qtyOrdered == 0) {
 			System.out.println("Your cart is empty!");
@@ -75,5 +99,20 @@ public class Cart {
 			cost += itemsOrdered[i].getCost();
 		return cost;
 	}
+	
+	public void print()
+	{
+		System.out.println("***********************CART***********************");
+		for(int i = 0; i < qtyOrdered; ++i)
+		{
+			String[] data = itemsOrdered[i].getDetails();
+			System.out.print("DVD - "+ data[0] +" - " + data[1] + " - " + data[2] + " - " + 
+								data[3] + ": " + data[4] + "$\n");
+		}
+		System.out.print("Total Cost: ");
+		System.out.println(totalCost());
+		System.out.println("**************************************************\n");
+	}
+	
 	
 }

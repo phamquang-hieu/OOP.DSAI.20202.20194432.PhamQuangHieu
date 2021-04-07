@@ -63,4 +63,14 @@ public class DigitalVideoDisc {
 	public int getId() {
 		return id;
 	}
+	
+	public String[] getDetails()
+	{
+		String dir = director; 
+		String len = Integer.toString(this.length);
+		if(director == null) dir = "Unknown";
+		if(length == 0) len = "Unknown";
+		String [] res = {this.title, this.category, dir, len, Float.toString(this.cost)};
+		return res;
+	}
 }
