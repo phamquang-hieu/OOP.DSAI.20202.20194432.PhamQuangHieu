@@ -29,5 +29,4 @@ public class Aims {
 		System.out.println("The number of discs remaining in cart is " + anOrder.getQtyOrdered());
 		System.out.println("Total Cost after the removal is " + anOrder.totalCost());
 	}
-
 }
