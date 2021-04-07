@@ -1,3 +1,5 @@
+package hust.soict.dsai.Lab01.Exercise64.src;
+
 import java.util.Scanner;
 public class Month{
 	public static void main(String args[]){

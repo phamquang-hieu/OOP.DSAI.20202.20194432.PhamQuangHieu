@@ -1,3 +1,5 @@
+package hust.soict.dsai.Lab01.Exercise66.src;
+
 import java.util.Scanner;
 
 public class AddMatrix

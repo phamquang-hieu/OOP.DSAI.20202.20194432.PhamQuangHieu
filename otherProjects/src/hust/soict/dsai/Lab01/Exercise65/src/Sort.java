@@ -1,3 +1,5 @@
+package hust.soict.dsai.Lab01.Exercise65.src;
+
 import java.util.Scanner;
 
 public class Sort{

@@ -1,3 +1,5 @@
+package hust.soict.dsai.Lab01.JavaBasics.src;
+
 import java.util.Scanner;
 
 public class InputFromKeyboard{

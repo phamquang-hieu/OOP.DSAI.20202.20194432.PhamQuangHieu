@@ -1,3 +1,5 @@
+package hust.soict.dsai.Lab01;
+
 import java.util.Scanner;
 class Ex_2_2_6{
 	static void firstOrder(double a, double b)
