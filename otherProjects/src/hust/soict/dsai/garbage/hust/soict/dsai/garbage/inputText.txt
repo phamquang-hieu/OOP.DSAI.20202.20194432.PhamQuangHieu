@@ -1,0 +1,9 @@
+First of all, you should update the class diagram of AIMS according to the exercises in the lab.
+For this lab class, you will have to turn in your work twice, specifically:
+o Right after the class: for this deadline, you should include any work you have done within the lab
+class.
+o 10PM three days after the class: for this deadline, you should include the source code of all sections
+of this lab, into a directory namely “Lab03” and push it to your master branch of the valid repository.
+Each student is expected to turn in his or her own work and not give or receive unpermitted aid. Otherwise,
+we would apply extreme methods for measurement to prevent cheating. Please note that you need
+to write down answers for all questions into a text file and submit within the folder of the lab.
