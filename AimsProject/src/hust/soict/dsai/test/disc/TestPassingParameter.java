@@ -26,8 +26,8 @@ public class TestPassingParameter {
 		WrapperDigitalVideoDisc wJungleDVD = new WrapperDigitalVideoDisc(jungleDVD);
 		WrapperDigitalVideoDisc wCinderellaDVD = new WrapperDigitalVideoDisc(cinderellaDVD);
 		realSwap(wJungleDVD, wCinderellaDVD);
-		System.out.println(jungleDVD.getTitle());
-		System.out.println(cinderellaDVD.getTitle());
+		System.out.println(wJungleDVD.dvd.getTitle());
+		System.out.println(wCinderellaDVD.dvd.getTitle());
 	}
 	
 }
