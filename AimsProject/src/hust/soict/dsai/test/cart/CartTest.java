@@ -17,6 +17,7 @@ public class CartTest {
 		anOrder.searchById(0);
 		anOrder.searchById(-1);
 		anOrder.searchByTitle("hieupham");
-		anOrder.searchByTitle("Stars Wars");
+		anOrder.searchByTitle("hieu pham sta");
+		anOrder.searchByTitle("lio Hieu");
 	}
 }
