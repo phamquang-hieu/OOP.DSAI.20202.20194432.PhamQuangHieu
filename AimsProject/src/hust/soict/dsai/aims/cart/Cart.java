@@ -56,13 +56,14 @@ public class Cart {
 	
 	public boolean searchByTitle(String title) {
 		for (int i = 0; i < qtyOrdered; ++i)
-			if(itemsOrdered[i].getTitle() == title)
-			{
+			for(String w: title.split("\\s", 0))
+				if(itemsOrdered[i].getTitle().toLowerCase().contains(w.toLowerCase()))
+				{
 				String[] data = itemsOrdered[i].getDetails();
 				System.out.print("DVD - "+ data[0] +" - " + data[1] + " - " + data[2] + " - " + 
 						data[3] + ": " + data[4] + "$\n");
 				return true;
-			}
+				}
 		System.out.println("No match DVD found!");
 		return false;
 	}
