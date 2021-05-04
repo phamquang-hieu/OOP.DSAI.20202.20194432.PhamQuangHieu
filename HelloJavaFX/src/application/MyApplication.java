@@ -14,7 +14,7 @@ public class MyApplication  extends Application {
         try {
             // Read file fxml and draw interface.
             Parent root = FXMLLoader.load(getClass()
-                    .getResource("src/MyScene.fxml"));
+                    .getResource("/application/MyScene.fxml"));
  
             primaryStage.setTitle("My Application");
             primaryStage.setScene(new Scene(root));
