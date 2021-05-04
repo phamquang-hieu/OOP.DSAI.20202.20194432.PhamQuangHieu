@@ -5,9 +5,11 @@ public class Cart {
 	private int qtyOrdered = 0;
 	public static final int MAX_NUMBERS_ORDERED = 20;
 	private DigitalVideoDisc itemsOrdered[] = new DigitalVideoDisc[MAX_NUMBERS_ORDERED];
+	
 	public int getQtyOrdered() {
 		return qtyOrdered;
 	}
+
 	private boolean fullyLoaded(){
 		if (qtyOrdered != MAX_NUMBERS_ORDERED) return false;
 		System.out.println("Your cart is almost full!");
