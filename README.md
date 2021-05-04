@@ -2,4 +2,4 @@
 Hands on lab exercise
 
 
-#exercise on JavaFX commited via the branch named "topic/java-fx"
+#exercises on JavaFX are commited via the branch named "topic/java-fx"
