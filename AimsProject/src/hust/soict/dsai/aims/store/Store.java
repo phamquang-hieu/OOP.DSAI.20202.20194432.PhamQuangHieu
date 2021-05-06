@@ -1,47 +1,55 @@
 package hust.soict.dsai.aims.store;
-import hust.soict.dsai.aims.disc.DigitalVideoDisc;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import hust.soict.dsai.aims.media.Media;
 
 public class Store {
-	private final int STORE_CAPACITY = 10000;
-	DigitalVideoDisc itemsInStore[] = new DigitalVideoDisc[STORE_CAPACITY];
-	private int inStockQty;
-	public void addDVD(DigitalVideoDisc...dvdList)
-	{
-		int remainQty = dvdList.length;
-		int i = 0;
-		while(remainQty != 0)
-		{
-			itemsInStore[inStockQty++] = dvdList[i++];
-			System.out.println("The disc "+ dvdList[i-1].getTitle()+ " has been added to your store." + " Id= " + dvdList[i-1].getId());
-			remainQty--;
-		}
-		
-		if(remainQty > 0)
-		{
-			System.out.println("Maximum capacity is " + STORE_CAPACITY + " discs");
-			System.out.println("The following dvd hasn't been added due to a lack of space:");
-			for(;i < dvdList.length; ++i)
-			{
-				System.out.println("\t+ "+ dvdList[i].getTitle());
+	private ArrayList<Media> itemsInStore = new ArrayList<Media>();
+	private int inStockQty=0;
+	
+	
+	public void addMedia(Media newMedia) {
+		for(Media m: itemsInStore) {
+			if(newMedia.getTitle().toLowerCase().equals(m.getTitle().toLowerCase())) {
+				System.out.println("This item is already in your store!");
+				return;
 			}
+		}
+		itemsInStore.add(newMedia);
+		System.out.println(newMedia.getTitle() + " has been added to the store!");
+		inStockQty++;
+		return;
+	}
+	
+	public void addMedia(Media...mediaList)
+	{
+		for(Media medium: mediaList) {
+			this.addMedia(medium);
 		}
 	}
 	
-	public void removeDVD(DigitalVideoDisc disc) {
-		if (inStockQty == 0) {
-			System.out.println("Your cart is empty!");
-			return;
-		}
-		for (int i = 0; i < inStockQty; ++i) {
-			if (itemsInStore[i].getId() != disc.getId()) {
-				for (int j = i + 1; j < inStockQty; j++)
-					itemsInStore[j - 1] = itemsInStore[j];
-				System.out.println("The disc "+ disc.getTitle()+ " has been removed");
+	public void removeMedia(Media newMedia) {
+		Iterator<Media> itr = itemsInStore.iterator();
+		while(itr.hasNext()) {
+			Media tmp = itr.next();
+			if(tmp.getTitle().toLowerCase().equals(newMedia.getTitle().toLowerCase())) {
+				itr.remove();
+				System.out.println("item: "+newMedia.getTitle()+ " has been removed from your store!");
 				inStockQty--;
 				return;
 			}
 		}
-		System.out.println("The disc given does not exist in your cart!");
+		System.out.println("No match found for item: "+newMedia.getTitle() + " in your store!");
+		return;
 	}
 	
+	public void removeMedia(Media...mediaList) {
+		for(Media medium: mediaList) {
+			this.removeMedia(medium);
+		}
+	}
+	
+	
+
 }
