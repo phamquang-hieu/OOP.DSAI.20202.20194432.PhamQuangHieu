@@ -1,17 +1,34 @@
 package hust.soict.dsai.aims.media;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class Book extends Media {
-	private int id;
-	private List<String> authors = new ArrayList<String>();
-
-	public Book() {
+	private ArrayList<String> authors = new ArrayList<String>();
+	public Book(String title, String category, float price, ArrayList<String> authors) {
 		// TODO Auto-generated constructor stub
+		super(title, category, price);
+		this.authors = authors;
 	}
 	
+	public static Book initNewBook() {
+		// generate new book for user
+		Scanner s = new Scanner(System.in);
+		Scanner strScanner = new Scanner(System.in);
+		System.out.println("Please enter book's title");
+		String inpTitle = strScanner.nextLine();
+		System.out.println("Please enter book's category");
+		String inpCat = strScanner.nextLine();
+		System.out.println("Please enter the cost of the book");
+		float inpCost = s.nextFloat();
+		System.out.println("Please enter the number of authors");
+		int authNum = s.nextInt();
+		ArrayList<String> inpAuthors = new ArrayList<String>();
+		for(int i = 0; i< authNum; ++i)
+			inpAuthors.add(strScanner.nextLine());
+		return new Book(inpTitle, inpCat, inpCost, inpAuthors);
+	}
 	
 	public void addAuthor(String authorName) {
 		for(String name: this.authors)

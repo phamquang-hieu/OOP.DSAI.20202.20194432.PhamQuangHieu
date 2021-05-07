@@ -1,6 +1,5 @@
 package hust.soict.dsai.aims.media;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 import java.util.Comparator;
 import java.util.Date;
 
@@ -12,8 +11,7 @@ public abstract class Media {
 	protected String title;
 	protected String category;
 	protected float cost;
-	protected Date date = new Date();
-    protected DateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss.SSS");
+	public Date date = new Date();
     protected int id;
     protected static int nbMedia = 0;
 	
@@ -72,7 +70,7 @@ public abstract class Media {
 	public StringBuffer getDetails()
 	{
 		StringBuffer mes = new StringBuffer("");
-		
+		mes.append("ID: " + this.getId() + ", ");
 		mes.append("title " + this.title);
 		if(this.category != null) 
 			mes.append(", category: " + this.category);
@@ -82,6 +80,7 @@ public abstract class Media {
 			mes.append(", cost: " + this.cost + ", ");
 		else
 			mes.append(", cost: " + "unknown, ");
+		mes.append("Date: " + this.date.toString() + ", ");
 		return mes;
 	}
 	

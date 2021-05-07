@@ -1,5 +1,6 @@
 package hust.soict.dsai.test.cart;
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 //import hust.soict.dsai.aims.media.Media;
 //import java.util.*;
@@ -16,6 +17,9 @@ public class CartTest {
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("the lion king", "Animation", 19.95f, "Roger Allers", 87);
 		anOrder.addMedia(dvd4);
 		anOrder.addMedia(dvd1);
+		//anOrder.sortMediaByCostTitle();
+		//anOrder.sortMediaByTitleCost();
+		System.out.println(anOrder.itemsOrdered.indexOf(new CompactDisc("he lion king")));
 		/*
 		System.out.println(anOrder.totalCost());
 		

@@ -1,12 +1,26 @@
 package hust.soict.dsai.aims.media;
 
+import java.util.Scanner;
+
 public class Track implements Playable{
 
 	private String title;
 	private int length;
-	public Track() {
-		// TODO Auto-generated constructor stub
+	public Track(String title, int length) {
+		this.title = title;
+		this.length = length;
 	}
+	
+	public static Track initNewTrack() {
+		// create new track // for user
+		Scanner s = new Scanner(System.in);
+		System.out.println("Please enter track's name");
+		String inpTitle = s.nextLine();
+		System.out.println("Please enter track's length");
+		int inpLen = s.nextInt();
+		return new Track(inpTitle, inpLen);
+	}
+	
 	public String getTitle() {
 		return title;
 	}
@@ -21,6 +35,7 @@ public class Track implements Playable{
 		}
 		return false;
 	}
+	
 	public void play() {
 		System.out.println("Playing Track: "+ this.title);
 		System.out.println("Track length: "+ this.length);

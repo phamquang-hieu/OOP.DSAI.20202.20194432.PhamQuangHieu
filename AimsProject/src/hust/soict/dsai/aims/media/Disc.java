@@ -1,6 +1,6 @@
 package hust.soict.dsai.aims.media;
 
-public class Disc extends Media {
+public abstract class Disc extends Media {
 	
 	private int length;
 	private String director;
@@ -19,7 +19,7 @@ public class Disc extends Media {
 		
 		StringBuffer mes = new StringBuffer("");
 		String tmplength = Integer.toString(this.length);
-		String tmpdirector = null;
+		String tmpdirector = this.director;
 		if(this.director == null)
 			tmpdirector = "Unknown";
 		if(this.length == 0)
@@ -59,7 +59,6 @@ public class Disc extends Media {
 		super(title, category);
 		this.length = length;
 		this.director = director;
-		
 	}
 	
 	public Disc(String title, String category, float cost) {
@@ -80,5 +79,6 @@ public class Disc extends Media {
 	public Disc() {
 		// TODO Auto-generated constructor stub
 	}
-
+	
+	
 }
