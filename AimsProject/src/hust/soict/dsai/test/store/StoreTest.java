@@ -10,11 +10,11 @@ public class StoreTest {
 		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Alladin", "Animation", 18.99f);
 		DigitalVideoDisc dvd4 = new DigitalVideoDisc("abc");
 		DigitalVideoDisc dvdList[] = {dvd1, dvd2, dvd3, dvd4};
-		x.addDVD(dvdList);
-		x.removeDVD(dvd4);
-		x.removeDVD(dvd3);
-		x.removeDVD(dvd2);
-		x.removeDVD(dvd1);
-		x.removeDVD(new DigitalVideoDisc("xyz"));
+		x.addMedia(dvdList);
+		x.removeMedia(dvd4);
+		x.removeMedia(dvd3);
+		x.removeMedia(dvd2);
+		x.removeMedia(dvd1);
+		x.removeMedia(new DigitalVideoDisc("xyz"));
 	}
 }

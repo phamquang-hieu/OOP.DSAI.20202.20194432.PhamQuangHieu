@@ -2,6 +2,7 @@ package hust.soict.dsai.aims.media;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
 
 public class CompactDisc extends Disc implements Playable{
 	private String artist;
@@ -47,15 +48,42 @@ public class CompactDisc extends Disc implements Playable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public CompactDisc(String title, String category, float cost, String director, int length) {
+	public CompactDisc(String title, String category, float cost, String director, int length, String artist, ArrayList<Track> tracks) {
 		super(title, category, cost, director, length);
-		// TODO Auto-generated constructor stub
+		this.artist = artist;
+		this.tracks = tracks;
 	}
 
 	public CompactDisc() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public static CompactDisc initNewCD() {
+		// generate new CD for users
+		Scanner s = new Scanner(System.in);
+		Scanner strScanner = new Scanner(System.in);
+		System.out.println("Please enter CD's title");
+		String inpTitle = strScanner.nextLine();
+		System.out.println("Please enter CD's category");
+		String inpCat = strScanner.nextLine();
+		System.out.println("Please enter the CD's director name");
+		String inpDir = strScanner.nextLine();
+		System.out.println("Please enter the length of the CD");
+		int inpLen = s.nextInt();
+		System.out.println("Please enter the cost of the CD");
+		float inpCost = s.nextFloat();
+		System.out.println("Please enter the artist name");
+		String inpArt = strScanner.nextLine();
+		System.out.println("Please enter the number of tracks in this CD");
+		int numTrack = s.nextInt();
+		System.out.println("Please enter all tracks belonging to the CD");
+		ArrayList<Track> inpTracks = new ArrayList<Track>();
+		for(int i = 0; i< numTrack; ++i)
+			inpTracks.add(Track.initNewTrack());
+		return new CompactDisc(inpTitle, inpCat, inpCost, inpDir, inpLen, inpArt, inpTracks);
+	}
 
+	
 	public String getArtist() {
 		return artist;
 	}

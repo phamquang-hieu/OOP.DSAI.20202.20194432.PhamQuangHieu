@@ -1,5 +1,6 @@
 package hust.soict.dsai.aims.media;
 
+import java.util.Scanner;
 
 public class DigitalVideoDisc extends Disc implements Playable{
 	private int id;
@@ -53,6 +54,22 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public static DigitalVideoDisc initNewDVD() {
+		// generate new DVD for user
+		Scanner s = new Scanner(System.in);
+		Scanner strScanner = new Scanner(System.in);
+		System.out.println("Please enter DVD's title");
+		String inpTitle = strScanner.nextLine();
+		System.out.println("Please enter DVD's category");
+		String inpCat = strScanner.nextLine();
+		System.out.println("Please enter the DVD's director name");
+		String inpDir = strScanner.nextLine();
+		System.out.println("Please enter the length of the DVD");
+		int inpLen = s.nextInt();
+		System.out.println("Please enter the cost of the DVD");
+		float inpCost = s.nextFloat();
+		return new DigitalVideoDisc(inpTitle, inpCat, inpCost, inpDir, inpLen);
+	}
 
 	public void play() {
 		System.out.println("Playing DVD: "+ this.getTitle());
