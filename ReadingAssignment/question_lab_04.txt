@@ -23,9 +23,9 @@ so there is just one ordering logic exists at 1 time.
 Suppose the DVDs has a different ordering rule from the other media types, that is by title, then decreasing
 length, then cost. How would you modify your code to allow this?
 
+I will override the compareTo method in class DVD as follow:
 @Override
 public int compareTo(Media o2){
-	if (!(o2 instanceof DigitalVideoDisc)) return super.compareTo(o2);
 	int titleCompare= this.getTitle().toLowerCase().compareTo(o2.getTitle().toLowerCase());
 	int lengthCompare = Interger.compare(this.getLength(), o2.getLength());
 	int costCompare= Float.compare(this.getCost(), o2.getCost());
