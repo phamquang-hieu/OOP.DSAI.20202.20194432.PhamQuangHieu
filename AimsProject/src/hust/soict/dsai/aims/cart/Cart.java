@@ -9,7 +9,7 @@ import hust.soict.dsai.aims.media.Media;
 
 public class Cart {
 	private int qtyOrdered = 0;
-	public ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
 	
 	public Cart() {
 		

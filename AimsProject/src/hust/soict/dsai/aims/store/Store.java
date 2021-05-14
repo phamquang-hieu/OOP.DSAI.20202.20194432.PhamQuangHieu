@@ -13,6 +13,14 @@ public class Store {
 	private ArrayList<Media> itemsInStore = new ArrayList<Media>();
 	private int inStockQty=0;
 	
+	public int getItemInStock() {
+		return this.inStockQty;
+	}
+	
+	public ArrayList<Media> getItemsInStore() {
+		return this.itemsInStore;
+	}
+	
 	//Store menu
 	public static void storeMenu() {
 		System.out.println("Options: ");
@@ -25,7 +33,6 @@ public class Store {
 		System.out.println("-------------------------------------");
 		System.out.println("Please choose a number: 0-1-2-3-4");
 	}
-	
 	
 	// Store functions
 	public void addMedia(Media newMedia) {

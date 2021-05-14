@@ -121,14 +121,18 @@ public class CompactDisc extends Disc implements Playable{
 		return;
 	}
 	
-	public void play(){
+	public StringBuffer play() {
 		System.out.println("Playing CD: "+ this.getTitle());
 		System.out.println("CD length: "+ this.getLength());
 		System.out.println("Artist: "+ this.getArtist());
 		
+		StringBuffer s = new StringBuffer("");
+		s.append("Playing CD: "+ this.getTitle() + "\n" + "CD length: "+ this.getLength() + "\n" + "Artist: "+ this.getArtist() + "\n");
+		
 		for(Track t: this.tracks) {
-			t.play();
+			s.append(t.play());
 		}
+		return s;
 	}
 	
 	public StringBuffer getDetails()

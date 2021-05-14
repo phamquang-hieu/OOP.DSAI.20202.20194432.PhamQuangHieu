@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
+import hust.soict.dsai.aims.screen.StoreScreen;
 import hust.soict.dsai.aims.store.Store;
 
 import java.util.Scanner;
@@ -35,6 +36,12 @@ public class Aims {
 		System.out.println("Total Cost is: "+ anotherOrder.totalCost() + "\n");
 		*/
 		Store newStore = new Store();
+		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", 19.95f, "Roger Allers", 87);
+		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Stars Wars", "Science Fiction", 24.95f,"George Lucas", 87);
+		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Alladin", "Animation", 18.99f);
+		DigitalVideoDisc dvd4 = new DigitalVideoDisc("abc");
+		DigitalVideoDisc dvdList[] = {dvd1, dvd2, dvd3, dvd4};
+		newStore.addMedia(dvdList);
 		Cart newCart = new Cart();
 		while(true){
 			Aims.showMenu();
@@ -47,6 +54,8 @@ public class Aims {
 				while(true) {
 					newStore.showStore();
 					Store.storeMenu();				
+					
+					new StoreScreen(newStore, newCart);
 					
 					int option1 = s.nextInt();
 					
