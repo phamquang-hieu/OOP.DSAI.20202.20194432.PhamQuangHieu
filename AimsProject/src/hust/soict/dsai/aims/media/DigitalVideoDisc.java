@@ -3,7 +3,6 @@ package hust.soict.dsai.aims.media;
 import java.util.Scanner;
 
 public class DigitalVideoDisc extends Disc implements Playable{
-	private int id;
 
 	public DigitalVideoDisc() {
 		super();
@@ -71,9 +70,13 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		return new DigitalVideoDisc(inpTitle, inpCat, inpCost, inpDir, inpLen);
 	}
 
-	public void play() {
+	public StringBuffer play() {
 		System.out.println("Playing DVD: "+ this.getTitle());
 		System.out.println("DVD length: "+ this.getLength());
+		StringBuffer s = new StringBuffer("");
+		s.append("Playing DVD: "+ this.getTitle() + "\n" + "DVD length: "+ this.getLength());
+		
+		return s;
 	}
 
 }
