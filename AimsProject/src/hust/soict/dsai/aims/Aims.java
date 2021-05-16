@@ -1,6 +1,7 @@
 package hust.soict.dsai.aims;
 import hust.soict.dsai.aims.cart.Cart;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
+import hust.soict.dsai.aims.screen.CartScreen;
 import hust.soict.dsai.aims.screen.StoreScreen;
 import hust.soict.dsai.aims.store.Store;
 
@@ -73,6 +74,7 @@ public class Aims {
 						newStore.playAMedia();
 					}
 					else if(option1 == 4) {
+						new CartScreen(newCart);
 						newCart.cartMenuOption();
 					}
 				}
@@ -83,7 +85,7 @@ public class Aims {
 			}
 			else if (option0 == 3) {
 				// see Current cart
-				newCart.cartMenuOption();
+				new CartScreen(newCart);
 			}
 		}
 	

@@ -6,10 +6,12 @@ import java.util.Scanner;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Cart {
 	private int qtyOrdered = 0;
-	private ArrayList<Media> itemsOrdered = new ArrayList<Media>();
+	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
 	
 	public Cart() {
 		
@@ -18,6 +20,9 @@ public class Cart {
 		return qtyOrdered;
 	}
 	
+	public ObservableList<Media> getItemsOrdered(){
+		return this.itemsOrdered;
+	}
 	public boolean addMedia(Media newMedia) {
 		if(itemsOrdered.contains(newMedia)) {
 			System.out.println("This item is already in your cart!");
