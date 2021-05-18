@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.LayoutManager;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,10 +16,12 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
@@ -70,27 +73,34 @@ public class MediaStore extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String button = e.getActionCommand();
 			if(button.equals("Play")) {
-				JFrame newFrame = new JFrame();
-				JTextField tfDisplay = new JTextField();
-				tfDisplay.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-				String content, title;
-				if(media instanceof DigitalVideoDisc) {
-					DigitalVideoDisc d = (DigitalVideoDisc) media;
-					content = d.play().toString();
-					title = d.getTitle();
+				try {
+					JFrame newFrame = new JFrame();
+					JTextField tfDisplay = new JTextField();
+					tfDisplay.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+					String content = "", title = "";
+					if(media instanceof DigitalVideoDisc) {
+						DigitalVideoDisc d = (DigitalVideoDisc) media;
+						content = d.play().toString();
+						
+						title = d.getTitle();
+					}
+					else {
+						CompactDisc d = (CompactDisc) media;
+						content = d.play().toString();
+						title = d.getTitle();
+					}
+					JDialog dl = new JDialog(newFrame, title);
+					tfDisplay.setText(content);
+					
+					dl.add(tfDisplay);
+					dl.setLayout(new FlowLayout());
+					dl.setSize(300, 300);
+					dl.setVisible(true);
+				} catch (HeadlessException e1) {
+					e1.printStackTrace();
+				} catch (PlayerException e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
 				}
-				else {
-					CompactDisc d = (CompactDisc) media;
-					content = d.play().toString();
-					title = d.getTitle();
-				}
-				JDialog dl = new JDialog(newFrame, title);
-				tfDisplay.setText(content);
-				
-				dl.add(tfDisplay);
-				dl.setLayout(new FlowLayout());
-				dl.setSize(300, 300);
-				dl.setVisible(true);
 				
 			}
 			if(button.equals("Add to cart")) {
