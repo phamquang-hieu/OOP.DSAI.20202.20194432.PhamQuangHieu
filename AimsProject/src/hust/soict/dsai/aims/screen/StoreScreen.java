@@ -9,6 +9,8 @@ import java.awt.Font;
 import java.awt.GraphicsConfiguration;
 import java.awt.GridLayout;
 import java.awt.HeadlessException;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
@@ -44,17 +46,6 @@ public class StoreScreen extends JFrame {
 		setSize(1024, 768);
 	}
 
-	/*
-	 * public StoreScreen(GraphicsConfiguration gc) { super(gc); // TODO
-	 * Auto-generated constructor stub }
-	 * 
-	 * public StoreScreen(String title) throws HeadlessException { super(title); //
-	 * TODO Auto-generated constructor stub }
-	 * 
-	 * public StoreScreen(String title, GraphicsConfiguration gc) { super(title,
-	 * gc); // TODO Auto-generated constructor stub }
-	 */
-	
 	JPanel createNorth() {
 		JPanel north = new JPanel();
 		north.setLayout(new BoxLayout(north, BoxLayout.Y_AXIS));
@@ -67,13 +58,24 @@ public class StoreScreen extends JFrame {
 		JMenu menu = new JMenu("Options");
 		
 		JMenu smUpdateStore = new JMenu("Update Store"); // sm = sub-menu
-		smUpdateStore.add(new JMenuItem("Add Book"));
-		smUpdateStore.add(new JMenuItem("Add CD"));
-		smUpdateStore.add(new JMenuItem("Add DVD"));
+		JMenuItem addBookMenu = new JMenuItem("Add Book");
+		JMenuItem addCDMenu = new JMenuItem("Add CD");
+		JMenuItem addDVDMenu = new JMenuItem("Add DVD");
+		smUpdateStore.add(addBookMenu);
+		smUpdateStore.add(addCDMenu);
+		smUpdateStore.add(addDVDMenu);
+		addBookMenu.addActionListener(new btnListener());
+		addDVDMenu.addActionListener(new btnListener());
+		addCDMenu.addActionListener(new btnListener());
 		
 		menu.add(smUpdateStore);
-		menu.add(new JMenuItem("View Store"));
-		menu.add(new JMenuItem("View Cart"));
+		JMenuItem viewStoreMenu = new JMenuItem("View Store");
+		JMenuItem viewCartMenu = new JMenuItem("View Cart");
+		menu.add(viewStoreMenu);
+		menu.add(viewCartMenu);
+		viewStoreMenu.addActionListener(new btnListener());
+		viewStoreMenu.addActionListener(new btnListener());
+		
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -90,7 +92,8 @@ public class StoreScreen extends JFrame {
 		title.setFont(new Font(title.getFont().getName(), Font.PLAIN, 50));
 		title.setForeground(Color.CYAN);
 		
-		JButton cart = new JButton("View cart");
+		JButton cart = new JButton("View Cart");
+		cart.addActionListener(new btnListener());
 		
 		cart.setPreferredSize(new Dimension(100, 50));
 		cart.setMaximumSize(new Dimension(100, 50));
@@ -116,6 +119,24 @@ public class StoreScreen extends JFrame {
 		}
 		
 		return center;
+	}
+	
+	private class btnListener implements ActionListener{
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			String command = e.getActionCommand();
+			if(command.equals("View Cart")) {
+				new CartScreen(cart, store);
+				dispose();
+			}
+			if(command.equals("View Store")) {
+				new StoreScreen(store, cart);
+				dispose();
+			}
+		}
+		
+		
 	}
 
 }
