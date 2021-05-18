@@ -20,22 +20,6 @@ public class Aims {
 	}
 	
 	public static void main(String[] args) {
-		/*
-		Cart anOrder = new Cart();
-		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", 19.95f, "Roger Allers", 87);
-		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Stars Wars", "Science Fiction",  24.95f, "George Lucas", 87);
-		DigitalVideoDisc dvd3 = new DigitalVideoDisc("Alladin", "Animation", 18.99f);
-		
-		DigitalVideoDisc dvdList[] = {dvd1, dvd2, dvd3};
-		anOrder.addDigitalVideoDisc(dvdList);
-		System.out.println("Total Cost is: ");
-		System.out.println(anOrder.totalCost() + "\n");
-		
-		Cart anotherOrder = new Cart();
-		anotherOrder.addDigitalVideoDisc(dvd1, dvd3);
-		anotherOrder.addDigitalVideoDisc(dvd1, dvd2, dvd3);
-		System.out.println("Total Cost is: "+ anotherOrder.totalCost() + "\n");
-		*/
 		Store newStore = new Store();
 		DigitalVideoDisc dvd1 = new DigitalVideoDisc("The Lion King", "Animation", 19.95f, "Roger Allers", 87);
 		DigitalVideoDisc dvd2 = new DigitalVideoDisc("Stars Wars", "Science Fiction", 24.95f,"George Lucas", 87);
@@ -44,6 +28,7 @@ public class Aims {
 		DigitalVideoDisc dvdList[] = {dvd1, dvd2, dvd3, dvd4};
 		newStore.addMedia(dvdList);
 		Cart newCart = new Cart();
+		new StoreScreen(newStore, newCart);
 		while(true){
 			Aims.showMenu();
 			Scanner s = new Scanner(System.in);
@@ -56,7 +41,6 @@ public class Aims {
 					newStore.showStore();
 					Store.storeMenu();				
 					
-					new StoreScreen(newStore, newCart);
 					
 					int option1 = s.nextInt();
 					
@@ -74,7 +58,7 @@ public class Aims {
 						newStore.playAMedia();
 					}
 					else if(option1 == 4) {
-						new CartScreen(newCart);
+						//new CartScreen(newCart);
 						newCart.cartMenuOption();
 					}
 				}
@@ -85,7 +69,8 @@ public class Aims {
 			}
 			else if (option0 == 3) {
 				// see Current cart
-				new CartScreen(newCart);
+				newCart.cartMenuOption();
+				//new CartScreen(newCart);
 			}
 		}
 	

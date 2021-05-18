@@ -7,18 +7,25 @@ import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
 import hust.soict.dsai.aims.media.Playable;
+import hust.soict.dsai.aims.store.Store;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import javafx.stage.Window;
+import javafx.util.converter.NumberStringConverter;
 
 public class CartScreenController {
 	
 	private Cart cart;
+	private Store store;
 	
 	@FXML
 	private TableView<Media> tblMedia;
@@ -37,10 +44,14 @@ public class CartScreenController {
 
     @FXML
     private Button btnRemove;
+    
+    @FXML
+    private Label totalCostLabel;
 	
-	public CartScreenController(Cart cart) {
+	public CartScreenController(Cart cart, Store store) {
 		super();
 		this.cart = cart;
+		this.store = store;
 	}
 	
 	@FXML
@@ -52,6 +63,8 @@ public class CartScreenController {
 		colMediaCost.setCellValueFactory(
 				new PropertyValueFactory<Media, Float>("Cost"));
 		tblMedia.setItems(this.cart.getItemsOrdered());
+		totalCostLabel.setText(Float.toString(cart.totalCost()));
+		
 		
 		btnPlay.setVisible(false);
 		btnRemove.setVisible(false);
@@ -80,6 +93,8 @@ public class CartScreenController {
 	void btnRemovePressed(ActionEvent event) {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
 		cart.removeMedia(media);
+		totalCostLabel.setText(Float.toString(cart.totalCost()));
+
 	}
 	
 	@FXML
@@ -95,5 +110,16 @@ public class CartScreenController {
 		}
 	}
 	
+	@FXML
+	void btnPlaceOrderPressed(ActionEvent event) {
+		this.cart.placeOrder();
+		totalCostLabel.setText(Float.toString(cart.totalCost()));
+		JOptionPane.showMessageDialog(null, "An order has been placed");
+	}
+	
+	@FXML
+	void cartMenuViewStore(ActionEvent event) {
+		new StoreScreen(store, cart);
+	}
 
 }

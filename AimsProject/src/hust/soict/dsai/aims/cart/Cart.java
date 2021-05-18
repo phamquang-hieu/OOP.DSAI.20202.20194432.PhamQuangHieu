@@ -12,6 +12,7 @@ import javafx.collections.ObservableList;
 public class Cart {
 	private int qtyOrdered = 0;
 	private ObservableList<Media> itemsOrdered = FXCollections.observableArrayList();
+	private float totalCost;
 	
 	public Cart() {
 		
@@ -30,6 +31,7 @@ public class Cart {
 		}
 		itemsOrdered.add(newMedia);
 		System.out.println(newMedia.getTitle() + " has been added!");
+		this.totalCost += newMedia.getCost();
 		qtyOrdered++;
 		System.out.println("Number of items in cart:" + this.qtyOrdered);
 		return true; //success
@@ -50,6 +52,7 @@ public class Cart {
 				itr.remove();
 				System.out.println("item: "+newMedia.getTitle()+ " has been removed!");
 				qtyOrdered--;
+				this.totalCost -= newMedia.getCost();
 				System.out.println("Number of remaining items in cart: " + this.qtyOrdered);
 				return true; // success
 			}
@@ -87,10 +90,7 @@ public class Cart {
 	
 	public float totalCost()
 	{
-		float cost = 0f;
-		for(Media m: itemsOrdered)
-			cost += m.getCost();
-		return cost;
+		return this.totalCost;
 	}
 
 	public boolean showCart()
@@ -126,6 +126,7 @@ public class Cart {
 		// placeOrder function
 		this.itemsOrdered.clear();
 		System.out.println("An order has been created");
+		this.totalCost = 0f;
 		return;
 	}
 	
