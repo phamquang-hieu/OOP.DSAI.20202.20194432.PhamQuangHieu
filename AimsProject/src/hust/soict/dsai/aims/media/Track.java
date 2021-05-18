@@ -2,6 +2,8 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Scanner;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class Track implements Playable{
 
 	private String title;
@@ -36,11 +38,16 @@ public class Track implements Playable{
 		return false;
 	}
 	
-	public StringBuffer play() {
-		System.out.println("Playing Track: "+ this.title);
-		System.out.println("Track length: "+ this.length);
-		StringBuffer s = new StringBuffer("");
-		s.append("Playing Track: "+ this.title + "\n" + "Track length: "+ this.length);
-		return s;
+	public StringBuffer play() throws PlayerException{
+		if (this.getLength() >0) {
+			System.out.println("Playing Track: " + this.title);
+			System.out.println("Track length: " + this.length);
+			StringBuffer s = new StringBuffer("");
+			s.append("Playing Track: " + this.title + "\n" + "Track length: " + this.length);
+			return s;
+		}
+		else {
+			throw new PlayerException("ERROR: Track length is non-positive!");
+		}
 	}
 }

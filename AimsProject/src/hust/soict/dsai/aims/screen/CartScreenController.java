@@ -1,8 +1,11 @@
 package hust.soict.dsai.aims.screen;
 
+import java.awt.HeadlessException;
+
 import javax.swing.JOptionPane;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
@@ -100,13 +103,21 @@ public class CartScreenController {
 	@FXML
 	void playButtonPressed(ActionEvent event) {
 		Media media = tblMedia.getSelectionModel().getSelectedItem();
-		if(media instanceof DigitalVideoDisc) {
-			DigitalVideoDisc d = (DigitalVideoDisc) media;
-			JOptionPane.showMessageDialog(null, d.play());
-		}
-		else if(media instanceof CompactDisc) {
-			CompactDisc c = (CompactDisc) media;
-			JOptionPane.showMessageDialog(null, c.play());
+		try {
+			if(media instanceof DigitalVideoDisc) {
+				DigitalVideoDisc d = (DigitalVideoDisc) media;
+				JOptionPane.showMessageDialog(null, d.play());
+			}
+			else if(media instanceof CompactDisc) {
+				CompactDisc c = (CompactDisc) media;
+				JOptionPane.showMessageDialog(null, c.play());
+			}
+		} catch (HeadlessException e) {
+			e.printStackTrace();
+		} catch (PlayerException e) {
+			System.err.println(e.getMessage());
+			JOptionPane.showMessageDialog(null, e.getMessage());
+			e.printStackTrace();
 		}
 	}
 	

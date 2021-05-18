@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
 import hust.soict.dsai.aims.media.Media;
@@ -153,10 +154,20 @@ public class Cart {
 					int playType = checkPlayable(tmp);
 					if (playType == 0) {
 						DigitalVideoDisc x = (DigitalVideoDisc) tmp;
-						x.play();
+						try {
+							x.play();
+						} catch (PlayerException e) {
+							System.err.println(e.getMessage());
+							e.printStackTrace();
+						}
 					} else if (playType == 1) {
 						CompactDisc x = (CompactDisc) tmp;
-						x.play();
+						try {
+							x.play();
+						} catch (PlayerException e) {
+							System.err.println(e.getMessage());
+							e.printStackTrace();
+						}
 					} else {
 						System.out.println("This item is not playable!");
 						continue;

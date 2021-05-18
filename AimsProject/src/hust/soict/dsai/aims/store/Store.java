@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Scanner;
 
 import hust.soict.dsai.aims.cart.Cart;
+import hust.soict.dsai.aims.exception.PlayerException;
 import hust.soict.dsai.aims.media.Book;
 import hust.soict.dsai.aims.media.CompactDisc;
 import hust.soict.dsai.aims.media.DigitalVideoDisc;
@@ -146,11 +147,21 @@ public class Store {
 					if (localOption == 2 && playType != -1) {
 						if (playType == 0) {
 							DigitalVideoDisc x = (DigitalVideoDisc) tmp;
-							x.play();
+							try {
+								x.play();
+							} catch (PlayerException e) {
+								System.err.println(e.getMessage());
+								e.printStackTrace();
+							}
 							break;
 						}
 						CompactDisc x = (CompactDisc) tmp;
-						x.play();
+						try {
+							x.play();
+						} catch (PlayerException e) {
+							System.err.println(e.getMessage());
+							e.printStackTrace();
+						}
 						break;
 					}
 					System.out.println("You have input wrong option!");
@@ -202,15 +213,20 @@ public class Store {
 				if (idInStore != -1) {
 					Media tmp = this.itemsInStore.get(idInStore);
 					int playType = checkPlayable(tmp);
-					if (playType == 0) {
-						DigitalVideoDisc x = (DigitalVideoDisc) tmp;
-						x.play();
-					} else if (playType == 1) {
-						CompactDisc x = (CompactDisc) tmp;
-						x.play();
-					} else {
-						System.out.println("This item is not playable!");
-						continue;
+					try {
+						if (playType == 0) {
+							DigitalVideoDisc x = (DigitalVideoDisc) tmp;
+							x.play();
+						} else if (playType == 1) {
+							CompactDisc x = (CompactDisc) tmp;
+							x.play();
+						} else {
+							System.out.println("This item is not playable!");
+							continue;
+						}
+					} catch (PlayerException e) {
+						System.err.println(e.getMessage());
+						e.printStackTrace();
 					}
 				} else {
 					System.out.println("You have input a wrong name!");

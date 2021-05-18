@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import hust.soict.dsai.aims.exception.PlayerException;
+
 public class CompactDisc extends Disc implements Playable{
 	private String artist;
 	private ArrayList<Track> tracks = new ArrayList<Track>();
@@ -121,18 +123,28 @@ public class CompactDisc extends Disc implements Playable{
 		return;
 	}
 	
-	public StringBuffer play() {
-		System.out.println("Playing CD: "+ this.getTitle());
-		System.out.println("CD length: "+ this.getLength());
-		System.out.println("Artist: "+ this.getArtist());
-		
-		StringBuffer s = new StringBuffer("");
-		s.append("Playing CD: "+ this.getTitle() + "\n" + "CD length: "+ this.getLength() + "\n" + "Artist: "+ this.getArtist() + "\n");
-		
-		for(Track t: this.tracks) {
-			s.append(t.play());
+	public StringBuffer play() throws PlayerException {
+		if (this.getLength() > 0) {
+			System.out.println("Playing CD: " + this.getTitle());
+			System.out.println("CD length: " + this.getLength());
+			System.out.println("Artist: " + this.getArtist());
+			StringBuffer s = new StringBuffer("");
+			s.append("Playing CD: " + this.getTitle() + "\n" + "CD length: " + this.getLength() + "\n" + "Artist: "
+					+ this.getArtist() + "\n");
+			for (Track t : this.tracks) {
+				try {
+					s.append(t.play());
+				} catch (PlayerException e) {
+					System.err.println(e.getMessage());
+					e.printStackTrace();
+					throw e;
+				}
+			}
+			return s;
 		}
-		return s;
+		else {
+			throw new PlayerException("ERROR: CD length is non-positive!");
+		}
 	}
 	
 	public StringBuffer getDetails()
