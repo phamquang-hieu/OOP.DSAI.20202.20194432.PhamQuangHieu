@@ -2,6 +2,7 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Scanner;
 
+import hust.soict.dsai.aims.exception.NegativeNumberException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class Track implements Playable{
@@ -11,6 +12,21 @@ public class Track implements Playable{
 	public Track(String title, int length) {
 		this.title = title;
 		this.length = length;
+	}
+	
+	public Track(String title, String length) throws NullPointerException, NumberFormatException, NegativeNumberException{
+		if(title==null || title.isBlank()) {
+			throw new NullPointerException("Title field is empty!");
+		}
+		if(length == null)
+			throw new NullPointerException("Length of a track must be a positive integer!");
+		try {
+			this.length = Integer.parseInt(length);
+		} catch (NumberFormatException e) {
+			throw new NumberFormatException("Length of a track must be a positive integer!");
+		}
+		if(this.length < 0)
+			throw new NegativeNumberException("Track's length must be a positive integer!");
 	}
 	
 	public static Track initNewTrack() {

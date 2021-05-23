@@ -19,7 +19,7 @@ public class SubTestScreen extends TestScreen {
 		
 		JPanel container = new JPanel();
     	container.setLayout(new FlowLayout());
-    	container.add(new JLabel("Your Name"));
+    	container.add(new JLabel("Your age"));
     	container.add(new JTextField(50));
     	container.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
     	super.getMainPanel().add(container, BorderLayout.CENTER);

@@ -3,6 +3,8 @@ package hust.soict.dsai.aims.media;
 import java.util.Comparator;
 import java.util.Date;
 
+import hust.soict.dsai.aims.exception.NegativeNumberException;
+
 public abstract class Media {
 	
 	public static final Comparator<Media> COMPARE_BY_TITLE_COST = new MediaComparatorByTitleCost();
@@ -36,6 +38,27 @@ public abstract class Media {
 		this.category = category;
 		this.cost = cost;
 		this.id = ++nbMedia;
+	}
+	
+	public Media(String title, String category, String cost) throws NullPointerException, NumberFormatException, NegativeNumberException {
+		if(title==null || title.isBlank())
+			throw new NullPointerException("Title field is empty!");
+		if(category==null || category.isBlank())
+			throw new NullPointerException("Category field is empty!");
+		if(cost==null || cost.isBlank())
+			throw new NullPointerException("Cost field is empty!");
+		
+		try {
+			this.title = title;
+			this.cost = Float.parseFloat(cost);
+			if(this.cost < 0) {
+				throw new NegativeNumberException("Cost must be a positive number");
+			}
+			this.category = category;
+		} catch (NumberFormatException e) {
+			System.err.println("Cost must be a positive number!");
+			throw new NumberFormatException("Cost must be a positive number!");
+		}
 	}
 	
 	public Media(String title, float cost) {
@@ -85,9 +108,16 @@ public abstract class Media {
 	}
 	
 	public boolean equals(Object x) {
-		if(x instanceof Media) {
-			Media tmp = (Media) x;
-			return tmp.getTitle().toLowerCase().equals(title.toLowerCase());
+		try {
+			if(x instanceof Media) {
+				Media tmp = (Media) x;
+				return tmp.getTitle().toLowerCase().equals(title.toLowerCase());
+			}
+		} catch (ClassCastException e) {
+			System.err.println(e.getMessage());
+			e.printStackTrace();
+		} catch (NullPointerException e) {
+			System.err.println("The class used for comparing is null!");
 		}
 		
 		return false;

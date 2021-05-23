@@ -1,5 +1,7 @@
 package hust.soict.dsai.aims.media;
 
+import hust.soict.dsai.aims.exception.NegativeNumberException;
+
 public abstract class Disc extends Media {
 	
 	private int length;
@@ -75,7 +77,25 @@ public abstract class Disc extends Media {
 		this.length = length;
 		this.director = director;
 	}
-
+	
+	public Disc(String title, String category, String cost, String director, String length) throws NumberFormatException, NullPointerException, NegativeNumberException{
+		super(title, category, cost);
+		System.out.println("director: " + director);
+		if(director==null||director.isBlank())
+			throw new NullPointerException("Director field is empty!");
+		try {
+			this.director = director;
+			this.length = Integer.parseInt(length);
+			if(this.length < 0)
+			{
+				throw new NegativeNumberException("Length can not be a negative number!");
+			}
+		}
+		catch(NumberFormatException e) {
+			throw new NumberFormatException("Length must be a positive integer!");
+		}
+	}
+	
 	public Disc() {
 		// TODO Auto-generated constructor stub
 	}

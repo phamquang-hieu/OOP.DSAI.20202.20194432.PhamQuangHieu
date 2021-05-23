@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
+import hust.soict.dsai.aims.exception.NegativeNumberException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class CompactDisc extends Disc implements Playable{
@@ -55,9 +56,15 @@ public class CompactDisc extends Disc implements Playable{
 		this.artist = artist;
 		this.tracks = tracks;
 	}
+	
+	public CompactDisc(String title, String category, String cost, String director, String length, String artist) throws NumberFormatException, NullPointerException, NegativeNumberException {
+		super(title, category, cost, director, length);
+		if(artist==null|| artist.isBlank())
+			throw new NullPointerException("Artist field is empty!");			
+	}
 
 	public CompactDisc() {
-		// TODO Auto-generated constructor stub
+
 	}
 	
 	public static CompactDisc initNewCD() {
@@ -99,16 +106,17 @@ public class CompactDisc extends Disc implements Playable{
 		return s;
 	}
 	
-	public void addTrack(Track newTrack) {
+	public boolean addTrack(Track newTrack) {
 		for(Track t: this.tracks)
 			if(newTrack.getTitle().equals(t.getTitle())) {
 				System.out.println("This track existed!");				
-				return;
+				return false;
 			}
 		this.tracks.add(newTrack);
+		return true;
 	}
 	
-	public void removeTrack(Track removedTrack) {
+	public boolean removeTrack(Track removedTrack) {
 		Iterator<Track> itr = this.tracks.iterator();
 		while(itr.hasNext())
 		{
@@ -116,11 +124,11 @@ public class CompactDisc extends Disc implements Playable{
 			if(tmp.getTitle().equals(removedTrack.getTitle())) {
 				itr.remove();
 				System.out.println("Track: "+ removedTrack.getTitle()+ " has been removed");
-				return;
+				return true;
 			}
 		}
 		System.out.println("This track doesn't exist!");
-		return;
+		return false;
 	}
 	
 	public StringBuffer play() throws PlayerException {

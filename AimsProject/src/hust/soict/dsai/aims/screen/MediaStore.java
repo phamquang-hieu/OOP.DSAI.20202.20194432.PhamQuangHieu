@@ -101,7 +101,6 @@ public class MediaStore extends JPanel {
 					JOptionPane.showMessageDialog(null, e1.getMessage());
 					e1.printStackTrace();
 				}
-				
 			}
 			if(button.equals("Add to cart")) {
 				cart.addMedia(media);
