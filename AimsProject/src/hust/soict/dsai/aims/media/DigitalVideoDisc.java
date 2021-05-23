@@ -2,6 +2,7 @@ package hust.soict.dsai.aims.media;
 
 import java.util.Scanner;
 
+import hust.soict.dsai.aims.exception.NegativeNumberException;
 import hust.soict.dsai.aims.exception.PlayerException;
 
 public class DigitalVideoDisc extends Disc implements Playable{
@@ -55,6 +56,9 @@ public class DigitalVideoDisc extends Disc implements Playable{
 		// TODO Auto-generated constructor stub
 	}
 	
+	public DigitalVideoDisc(String title, String category, String cost, String director, String length) throws NumberFormatException, NullPointerException, NegativeNumberException {
+		super(title, category, cost, director, length);	
+	}
 	public static DigitalVideoDisc initNewDVD() {
 		// generate new DVD for user
 		Scanner s = new Scanner(System.in);

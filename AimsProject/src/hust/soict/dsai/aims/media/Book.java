@@ -1,8 +1,11 @@
 package hust.soict.dsai.aims.media;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import hust.soict.dsai.aims.exception.NegativeNumberException;
 
 public class Book extends Media {
 	private ArrayList<String> authors = new ArrayList<String>();
@@ -10,6 +13,14 @@ public class Book extends Media {
 		// TODO Auto-generated constructor stub
 		super(title, category, price);
 		this.authors = authors;
+	}
+	
+	public Book(String title, String category, String price, String authors) throws NumberFormatException, NullPointerException, NegativeNumberException {
+		super(title, category, price);
+		if(authors==null||authors.isBlank())
+			throw new NullPointerException("Authors field is empty!");
+		ArrayList<String> lst = new ArrayList<String>(Arrays.asList(authors.split(",")));
+		this.authors = lst;
 	}
 	
 	public static Book initNewBook() {

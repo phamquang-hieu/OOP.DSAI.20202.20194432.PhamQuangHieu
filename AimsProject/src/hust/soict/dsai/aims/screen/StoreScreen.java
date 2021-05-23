@@ -31,6 +31,8 @@ import hust.soict.dsai.aims.store.Store;
 public class StoreScreen extends JFrame {
 	private Store store;
 	private Cart cart;
+	private JPanel center;
+	
 	
 	public StoreScreen(Store store, Cart currentCart) throws HeadlessException {
 		this.store = store;
@@ -38,8 +40,9 @@ public class StoreScreen extends JFrame {
 		Container cp = getContentPane();
 		cp.setLayout(new BorderLayout());
 		
+		this.center = createCenter();
 		cp.add(createNorth(), BorderLayout.NORTH);
-		cp.add(createCenter(), BorderLayout.CENTER);
+		cp.add(center, BorderLayout.CENTER);
 		
 		setVisible(true);
 		setTitle("Store");
@@ -74,7 +77,7 @@ public class StoreScreen extends JFrame {
 		menu.add(viewStoreMenu);
 		menu.add(viewCartMenu);
 		viewStoreMenu.addActionListener(new btnListener());
-		viewStoreMenu.addActionListener(new btnListener());
+		viewCartMenu.addActionListener(new btnListener());
 		
 		
 		JMenuBar menuBar = new JMenuBar();
@@ -133,6 +136,15 @@ public class StoreScreen extends JFrame {
 			if(command.equals("View Store")) {
 				new StoreScreen(store, cart);
 				dispose();
+			}
+			if(command.equals("Add DVD")) {
+				new AddDigitalVideoDiscToStoreScreen(store, cart, center);
+			}
+			if(command.equals("Add Book")) {
+				new AddBookToStoreScreen(store, cart, center);
+			}
+			if(command.equals("Add CD")) {
+				new AddCompactDiscToStoreScreen(store, cart, center);
 			}
 		}
 		

@@ -36,18 +36,18 @@ public class Store {
 	}
 	
 	// Store functions
-	public void addMedia(Media newMedia) {
+	public boolean addMedia(Media newMedia) {
 		for(Media m: itemsInStore) {
 			if(newMedia.getTitle().toLowerCase().equals(m.getTitle().toLowerCase())) {
 				System.out.println("This item is already in your store!");
-				return;
+				return false;
 			}
 		}
 		itemsInStore.add(newMedia);
 		System.out.println(newMedia.getTitle() + " has been added to the store!");
 		inStockQty++;
 		System.out.println("Number of items in store: " + this.inStockQty);
-		return;
+		return true;
 	}
 	
 	public void addMedia(Media...mediaList)
