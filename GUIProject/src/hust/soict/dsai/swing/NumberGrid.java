@@ -63,8 +63,13 @@ public class NumberGrid extends JFrame {
 				tfDisplay.setText(tfDisplay.getText() + button);
 			}
 			else if (button.equals("DEL")) {
-				String txt = tfDisplay.getText();
-				tfDisplay.setText(txt.substring(0, txt.length()-1));
+				try {
+					String txt = tfDisplay.getText();
+					tfDisplay.setText(txt.substring(0, txt.length()-1));
+				} catch (StringIndexOutOfBoundsException e1) {
+					System.err.println(e1.getMessage());
+					e1.printStackTrace();
+				}
 			}
 			else {
 				tfDisplay.setText("");;
